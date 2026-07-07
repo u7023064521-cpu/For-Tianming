@@ -1,90 +1,105 @@
-// Stockage des réponses de la princesse
 let choixDate = "";
 let choixTenue = "";
 let choixRepas = "";
 
-// 1. Gestion du bouton NON qui s'enfuit
+// 1. Le bouton NON s'enfuit + fait apparaître le GIF de Gaon qui dit non
 function fuirBouton() {
     const btnNon = document.getElementById('btn-non');
+    const gifWarning = document.getElementById('gif-warning');
     
-    // On calcule des positions aléatoires dans l'écran
+    gifWarning.classList.remove('hidden');
+    
     const maxX = window.innerWidth - btnNon.offsetWidth - 20;
     const maxY = window.innerHeight - btnNon.offsetHeight - 20;
     
     const newX = Math.floor(Math.random() * maxX);
     const newY = Math.floor(Math.random() * maxY);
     
-    // On force le bouton à bouger n'importe où sur l'écran
     btnNon.style.position = 'fixed';
     btnNon.style.left = newX + 'px';
     btnNon.style.top = newY + 'px';
 }
 
-// 2. Clic sur OUI -> Confettis et passage à la date
+// 2. Clic sur OUI -> Confettis + Affichage du GIF Gaon Coeur
 function validerQuiz() {
-    // Explosion de confettis
     confetti({
         particleCount: 150,
-        spread: 70,
+        spread: 80,
         origin: { y: 0.6 }
     });
 
-    // On attend 1,5 seconde et on passe à la suite
+    document.getElementById('step-quiz').classList.add('hidden');
+    document.getElementById('step-success-gif').classList.remove('hidden');
+
+    // On laisse le GIF 3,2 secondes, puis on passe au choix de la date ET on change le fond !
     setTimeout(() => {
-        document.getElementById('step-quiz').classList.add('hidden');
+        document.getElementById('step-success-gif').classList.add('hidden');
         document.getElementById('step-date').classList.remove('hidden');
-    }, 1500);
+        
+        // APPLICATION DU FOND DES ROSES POUR LA DATE
+        document.body.style.backgroundImage = "url('fond-date.jpg')";
+    }, 3200);
 }
 
-// 3. Enregistrement des choix et changement de page
+// 3. Enregistrement des choix et changement de fond automatique à chaque étape
 function choisir(etape, valeur) {
     if (etape === 'date') {
         choixDate = valeur;
         document.getElementById('step-date').classList.add('hidden');
         document.getElementById('step-tenue').classList.remove('hidden');
+        
+        // APPLICATION DU FOND MIROIR POUR LES TENUES
+        document.body.style.backgroundImage = "url('fond-tenue.jpg')";
+        
     } else if (etape === 'tenue') {
         choixTenue = valeur;
         document.getElementById('step-tenue').classList.add('hidden');
         document.getElementById('step-repas').classList.remove('hidden');
+        
+        // APPLICATION DU FOND CAFÉ POUR LE REPAS
+        document.body.style.backgroundImage = "url('fond-repas.jpg')";
+        
     } else if (etape === 'repas') {
         choixRepas = valeur;
         document.getElementById('step-repas').classList.add('hidden');
         document.getElementById('step-bouquet').classList.remove('hidden');
+        
+        // APPLICATION DU FOND DRAPÉ DRAPÉ COEURS POUR LE FINAL
+        document.body.style.backgroundImage = "url('fond-final.jpg')";
     }
 }
 
-// 4. Explosion du bouquet de fleurs
+// 4. Explosion du bouquet
 function exploserBouquet() {
-    // Grosse explosion de confettis !
     confetti({
         particleCount: 200,
         spread: 100,
         origin: { y: 0.6 }
     });
 
-    // Préparation du texte récapitulatif
     const recapZone = document.getElementById('recap-texte');
     recapZone.innerHTML = `
         📌 <b>Date :</b> ${choixDate}<br>
-        👔 <b>Ta tenue :</b> ${choixTenue}<br>
-        🍽️ <b>Repas :</b> ${choixRepas}
+        👔 <b>Ta tenue préférée :</b> ${choixTenue}<br>
+        🍽️ <b>Menu choisi :</b> ${choixRepas}
     `;
 
-    // Passage à l'écran final
     setTimeout(() => {
         document.getElementById('step-bouquet').classList.add('hidden');
         document.getElementById('step-recap').classList.remove('hidden');
     }, 1200);
 }
 
-// 5. Envoi des résultats par WhatsApp/SMS
+// 5. Envoi automatique par SMS
 function envoyerResultats() {
     const message = `Coucou ! Voici mes choix pour notre date : \n\n🗓️ Date : ${choixDate}\n👔 Tenue : ${choixTenue}\n🍣 Repas : ${choixRepas}\n\nHâte d'y être ! ❤️`;
     
-    // Remplace par ton vrai numéro de téléphone (Exemple : 33612345678 pour le 06 12 34 56 78)
-    const monNumero = "33600000000"; 
+    // ⚠️ METS TON VRAI NUMÉRO ICI ! ⚠️
+    const monNumero = "0600000000"; 
     
-    // Ouvre automatiquement WhatsApp avec le message pré-rempli
-    const url = `https://wa.me/${monNumero}?text=${encodeURIComponent(message)}`;
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const separateur = isIOS ? '&' : '?';
+    const url = `sms:${monNumero}${separateur}body=${encodeURIComponent(message)}`;
+    
     window.open(url, '_blank');
 }
