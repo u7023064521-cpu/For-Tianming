@@ -5,47 +5,120 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+    background: linear-gradient(135deg, #ffe5ec, #ffb3c6);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: hidden; /* Évite les barres de défilement si le bouton va trop loin */
+    overflow: hidden;
 }
 
-.quiz-container {
-    text-align: center;
+.container {
     background: white;
-    padding: 40px;
+    padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 90%;
+    width: 350px;
+    transition: all 0.3s ease;
 }
 
-h1 {
+.hidden {
+    display: none !important;
+}
+
+h1, h2, h3 {
     color: #ff477e;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+}
+
+.congrats {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
 }
 
 .buttons {
     display: flex;
     justify-content: center;
     gap: 20px;
+    position: relative;
+    height: 50px;
+    align-items: center;
 }
 
 button {
-    padding: 15px 30px;
-    font-size: 18px;
-    font-weight: bold;
+    padding: 12px 24px;
+    font-size: 16px;
     border: none;
-    border-radius: 10px;
+    border-radius: 25px;
     cursor: pointer;
+    font-weight: bold;
     transition: transform 0.1s;
 }
 
 #btn-oui {
-    background-color: #4cc9f0;
+    background-color: #ff477e;
     color: white;
 }
 
 #btn-non {
-    background-color: #ff477e;
+    background-color: #cccccc;
+    color: #333333;
+    position: absolute;
+    left: 190px; /* Placé juste à côté du bouton oui au départ */
+}
+
+.options-list {
+    display: flex;
+    vertical-align: middle;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.options-list button {
+    background-color: #fff0f3;
+    color: #ff477e;
+    border: 2px solid #ffb3c6;
+}
+
+.options-list button:hover {
+    background-color: #ffb3c6;
     color: white;
-    position: absolute; /* Permet de le déplacer n'importe où sur l'écran */
+}
+
+.barre {
+    text-decoration: line-through;
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}
+
+#bouquet {
+    font-size: 80px;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+#bouquet:hover {
+    transform: scale(1.1);
+}
+
+#recap-texte {
+    text-align: left;
+    background: #fff0f3;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 5px solid #ff477e;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+#btn-envoyer {
+    background-color: #25D366; /* Couleur WhatsApp */
+    color: white;
+    width: 100%;
 }
