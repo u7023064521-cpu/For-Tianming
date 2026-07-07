@@ -5,39 +5,77 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #ffe5ec, #ffb3c6);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('fond.jpg') no-repeat center center/cover;
+    font-family: 'Poppins', sans-serif;
     overflow: hidden;
+    transition: background-image 0.5s ease-in-out;
 }
 
 .container {
-    background: white;
-    padding: 30px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(6px);
+    padding: 25px;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 35px rgba(255, 179, 198, 0.35);
     text-align: center;
     max-width: 90%;
-    width: 350px;
+    width: 340px;
     transition: all 0.3s ease;
 }
 
-.hidden {
-    display: none !important;
-}
-
-h1, h2, h3 {
-    color: #ff477e;
+/* Écriture manuscrite élégante */
+.text-elegant h1, .text-elegant h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 34px;
+    font-weight: 700;
+    color: #d946ef;
+    margin-top: 5px;
     margin-bottom: 20px;
-}
-
-.congrats {
-    font-size: 20px;
-    margin-bottom: 5px;
+    line-height: 1.2;
 }
 
 .subtitle {
-    font-size: 14px;
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.sms-sub {
+    margin-top: 20px; 
+    font-size: 14px; 
     color: #666;
+}
+
+.gaon-gif {
+    width: 170px;
+    height: 170px;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    margin-bottom: 15px;
+}
+
+/* Zone du bouton "Jamais" avec le GIF de Gaon */
+.jamais-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.gaon-gif-small {
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.warning-text {
+    color: #e11d48;
+    font-weight: bold;
+    font-size: 14px;
     margin-bottom: 15px;
 }
 
@@ -46,7 +84,7 @@ h1, h2, h3 {
     justify-content: center;
     gap: 20px;
     position: relative;
-    height: 50px;
+    height: 60px;
     align-items: center;
 }
 
@@ -57,43 +95,84 @@ button {
     border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
-    transition: transform 0.1s;
+    font-family: 'Poppins', sans-serif;
 }
 
 #btn-oui {
     background-color: #ff477e;
     color: white;
+    z-index: 10;
 }
 
 #btn-non {
-    background-color: #cccccc;
-    color: #333333;
+    background-color: #e2e8f0;
+    color: #475569;
     position: absolute;
-    left: 190px; /* Placé juste à côté du bouton oui au départ */
+    left: 190px;
 }
 
 .options-list {
     display: flex;
-    vertical-align: middle;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .options-list button {
     background-color: #fff0f3;
     color: #ff477e;
     border: 2px solid #ffb3c6;
+    padding: 10px 20px;
 }
 
-.options-list button:hover {
+.options-list button:hover:not(.barre) {
     background-color: #ffb3c6;
     color: white;
 }
 
 .barre {
     text-decoration: line-through;
-    opacity: 0.5;
+    opacity: 0.4;
+    background-color: #f1f5f9 !important;
+    color: #94a3b8 !important;
+    border: 2px solid #cbd5e1 !important;
     cursor: not-allowed !important;
+    width: 100%;
+}
+
+/* Grille pour afficher les tenues et les repas 2 par 2 */
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* Boutons en forme de cartes */
+.btn-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff0f3;
+    color: #ff477e;
+    border: 2px solid #ffb3c6;
+    padding: 8px !important;
+    border-radius: 15px !important;
+    font-size: 13px !important;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn-card:hover {
+    background-color: #ffb3c6;
+    color: white;
+}
+
+/* Taille et gestion des images dans les boutons */
+.img-tenue {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 6px;
 }
 
 #bouquet {
@@ -115,10 +194,17 @@ button {
     border-left: 5px solid #ff477e;
     font-size: 15px;
     line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
 }
 
 #btn-envoyer {
-    background-color: #25D366; /* Couleur WhatsApp */
+    background-color: #007aff;
     color: white;
     width: 100%;
+    margin-top: 10px;
 }
+
+.hidden {
+    display: none !important;
+}
+ 
