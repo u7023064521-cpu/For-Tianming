@@ -5,68 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Une petite question...</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Polices élégantes appliquées partout -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <!-- Pour les confettis -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
     <!-- ÉTAPE 1 : Le Quiz de départ -->
-    <div id="step-quiz" class="container">
+    <div id="step-quiz" class="container text-elegant">
         <h1>Tu veux sortir avec moi ? ❤️</h1>
+        
+        <div id="gif-warning" class="hidden">
+            <img src="gaon-non.gif" alt="Gaon dit non" class="gaon-gif">
+            <p class="warning-text">N'essaye pas de cliquer sur le NON ! 🤫</p>
+        </div>
+
         <div class="buttons">
             <button id="btn-oui" onclick="validerQuiz()">OUI !</button>
             <button id="btn-non" onmouseover="fuirBouton()" onclick="fuirBouton()">Non</button>
         </div>
     </div>
 
-    <!-- ÉTAPE 2 : Félicitations et Choix Date/Heure -->
-    <div id="step-date" class="container hidden">
-        <h2 class="congrats">Félicitations, tu as rendez-vous avec Yeom-ra. 🎉</h2>
-        <p class="subtitle">À toi de choisir maintenant l'ambiance du date.</p>
-        <hr>
-        <h3>Choisie l'heure et la date princesse.</h3>
+    <!-- ÉTAPE 1.5 : Le GIF du Coeur avant la suite -->
+    <div id="step-success-gif" class="container text-elegant hidden">
+        <img src="gaon-coeur.gif" alt="Gaon Coeur" class="gaon-gif">
+        <h2>Félicitations, tu as rendez-vous avec Yeom-ra. 🎉</h2>
+        <p class="subtitle">À toi de choisir maintenant l'ambiance du date...</p>
+    </div>
+
+    <!-- ÉTAPE 2 : Choix Date/Heure (Fond Roses) -->
+    <div id="step-date" class="container text-elegant hidden">
+        <h2>Choisie l'heure et la date princesse.</h2>
         <div class="options-list">
             <button onclick="choisir('date', 'Ce soir à 20h')">Ce soir : 20h</button>
             <button onclick="choisir('date', 'Demain à 20h')">Demain : 20h</button>
             <button onclick="choisir('date', 'Samedi à 20h')">Samedi : 20h</button>
-            <button class="barre" disabled>Jamais.</button>
+            
+            <!-- Zone Jamais avec Gaon qui te juge -->
+            <div class="jamais-container">
+                <img src="gaon-jamais.gif" alt="Gaon te surveille" class="gaon-gif-small">
+                <button class="barre" disabled>Jamais.</button>
+            </div>
         </div>
     </div>
 
-    <!-- ÉTAPE 3 : Choix de la tenue -->
-    <div id="step-tenue" class="container hidden">
-        <h3>Choisie ma tenue, beau gosse stp.</h3>
-        <div class="options-list">
-            <button onclick="choisir('tenue', 'Costume cravate')">Costume cravate</button>
-            <button onclick="choisir('tenue', 'Jean débardeur, ceinture')">Jean débardeur, ceinture</button>
-            <button onclick="choisir('tenue', 'Street')">Street</button>
-            <button onclick="choisir('tenue', 'Type clochard Jogging')">Type clochard Jogging (pour rire)</button>
+    <!-- ÉTAPE 3 : Choix de la tenue avec tes photos (Fond Miroir) -->
+    <div id="step-tenue" class="container text-elegant hidden">
+        <h2>Choisie ma tenue, beau gosse stp.</h2>
+        <div class="options-grid">
+            <button onclick="choisir('tenue', 'Jean débardeur, ceinture')" class="btn-card">
+                <img src="tenue-debardeur.jpg" class="img-tenue">
+                <span>Jean débardeur</span>
+            </button>
+            <button onclick="choisir('tenue', 'Costume cravate')" class="btn-card">
+                <img src="tenue-costume.jpg" class="img-tenue">
+                <span>Costume cravate</span>
+            </button>
+            <button onclick="choisir('tenue', 'Street')" class="btn-card">
+                <img src="tenue-street.jpg" class="img-tenue">
+                <span>Street style</span>
+            </button>
+            <button onclick="choisir('tenue', 'Type clochard Jogging')" class="btn-card">
+                <img src="tenue-clochard.jpg" class="img-tenue">
+                <span>Type clochard (Jogging)</span>
+            </button>
         </div>
     </div>
 
-    <!-- ÉTAPE 4 : Choix du repas -->
-    <div id="step-repas" class="container hidden">
-        <h3>Choisie le repas ma belle.</h3>
-        <div class="options-list">
-            <button onclick="choisir('repas', 'Sushi')">Sushi 🍣</button>
-            <button onclick="choisir('repas', 'Pizza')">Pizza 🍕</button>
-            <button onclick="choisir('repas', 'Pâtes')">Pâtes 🍝</button>
-            <button onclick="choisir('repas', 'Fruits de mer')">Fruits de mer 🦪</button>
-            <button onclick="choisir('repas', 'Burgers')">Burgers 🍔</button>
+    <!-- ÉTAPE 4 : Choix du repas avec photos Hello Kitty / Pink (Fond Café) -->
+    <div id="step-repas" class="container text-elegant hidden">
+        <h2>Choisie le repas ma belle.</h2>
+        <div class="options-grid">
+            <button onclick="choisir('repas', 'Sushi 🍣')" class="btn-card">
+                <img src="repas-sushi.jpg" class="img-tenue">
+                <span>Sushi 🍣</span>
+            </button>
+            <button onclick="choisir('repas', 'Pizza 🍕')" class="btn-card">
+                <img src="repas-pizza.jpg" class="img-tenue">
+                <span>Pizza 🍕</span>
+            </button>
+            <button onclick="choisir('repas', 'Pâtes 🍝')" class="btn-card">
+                <img src="repas-pates.jpg" class="img-tenue">
+                <span>Pâtes 🍝</span>
+            </button>
+            <button onclick="choisir('repas', 'Fruits de mer 🦪')" class="btn-card">
+                <img src="repas-mer.jpg" class="img-tenue">
+                <span>Fruits de mer 🦪</span>
+            </button>
+            <button onclick="choisir('repas', 'Burgers 🍔')" class="btn-card" style="grid-column: span 2; max-width: 100%;">
+                <img src="repas-burger.jpg" class="img-tenue" style="height: 130px;">
+                <span>Burgers & Frites 🍔</span>
+            </button>
         </div>
     </div>
 
-    <!-- ÉTAPE 5 : Le Bouquet Final -->
-    <div id="step-bouquet" class="container hidden">
-        <h3>Un petit cadeau pour toi... Cliquez dessus !</h3>
+    <!-- ÉTAPE 5 : Le Bouquet Final (Fond Drapé Coeurs) -->
+    <div id="step-bouquet" class="container text-elegant hidden">
+        <h2>Un petit cadeau pour toi... Cliquez dessus !</h2>
         <div id="bouquet" onclick="exploserBouquet()">💐</div>
     </div>
 
-    <!-- ÉTAPE 6 : Le Récapitulatif envoyé par message -->
-    <div id="step-recap" class="container hidden">
+    <!-- ÉTAPE 6 : Le Récapitulatif -->
+    <div id="step-recap" class="container text-elegant hidden">
         <h2>Résumé de notre rendez-vous ✨</h2>
         <div id="recap-texte"></div>
-        <p style="margin-top:20px; font-size:14px; color:#666;">Clique en dessous pour m'envoyer tes choix !</p>
+        <p class="sms-sub">Clique en dessous pour m'envoyer tes choix !</p>
         <button id="btn-envoyer" onclick="envoyerResultats()">📱 M'envoyer le résumé</button>
     </div>
 
