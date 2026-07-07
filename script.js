@@ -36,8 +36,8 @@ function validerQuiz() {
         document.getElementById('step-success-gif').classList.add('hidden');
         document.getElementById('step-date').classList.remove('hidden');
         
-        // APPLICATION DU FOND DES ROSES POUR LA DATE
-        document.body.style.backgroundImage = "url('fond-date.jpg')";
+        // APPLICATION DU FOND DES ROSES (Celui du début) POUR LA DATE
+        document.body.style.backgroundImage = "url('https://i.pinimg.com/originals/a0/0a/f2/a00af260844784a0c8227b4097486e92.jpg')";
     }, 3200);
 }
 
@@ -49,23 +49,23 @@ function choisir(etape, valeur) {
         document.getElementById('step-tenue').classList.remove('hidden');
         
         // APPLICATION DU FOND MIROIR POUR LES TENUES
-        document.body.style.backgroundImage = "url('fond-tenue.jpg')";
+        document.body.style.backgroundImage = "url('https://i.pinimg.com/originals/7e/53/a1/7e53a1741436474d9adc-b5f517618a55.jpg')";
         
     } else if (etape === 'tenue') {
         choixTenue = valeur;
         document.getElementById('step-tenue').classList.add('hidden');
         document.getElementById('step-repas').classList.remove('hidden');
         
-        // APPLICATION DU FOND CAFÉ POUR LE REPAS
-        document.body.style.backgroundImage = "url('fond-repas.jpg')";
+        // APPLICATION DU FOND CAFÉ ROSE POUR LE REPAS
+        document.body.style.backgroundImage = "url('https://i.pinimg.com/originals/ce/16/be/ce16be484646ecb457e5b56dc663f78a.jpg')";
         
     } else if (etape === 'repas') {
         choixRepas = valeur;
         document.getElementById('step-repas').classList.add('hidden');
         document.getElementById('step-bouquet').classList.remove('hidden');
         
-        // APPLICATION DU FOND DRAPÉ DRAPÉ COEURS POUR LE FINAL
-        document.body.style.backgroundImage = "url('fond-final.jpg')";
+        // APPLICATION DU FOND DES ROSES POUR LE BOUQUET FINAL
+        document.body.style.backgroundImage = "url('https://i.pinimg.com/originals/a0/0a/f2/a00af260844784a0c8227b4097486e92.jpg')";
     }
 }
 
