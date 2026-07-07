@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Une petite question...</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Pour les confettis -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <!-- ÉTAPE 1 : Le Quiz de départ -->
+    <div id="step-quiz" class="container">
+        <h1>Tu veux sortir avec moi ? ❤️</h1>
+        <div class="buttons">
+            <button id="btn-oui" onclick="validerQuiz()">OUI !</button>
+            <button id="btn-non" onmouseover="fuirBouton()" onclick="fuirBouton()">Non</button>
+        </div>
+    </div>
+
+    <!-- ÉTAPE 2 : Félicitations et Choix Date/Heure -->
+    <div id="step-date" class="container hidden">
+        <h2 class="congrats">Félicitations, tu as rendez-vous avec Yeom-ra. 🎉</h2>
+        <p class="subtitle">À toi de choisir maintenant l'ambiance du date.</p>
+        <hr>
+        <h3>Choisie l'heure et la date princesse.</h3>
+        <div class="options-list">
+            <button onclick="choisir('date', 'Ce soir à 20h')">Ce soir : 20h</button>
+            <button onclick="choisir('date', 'Demain à 20h')">Demain : 20h</button>
+            <button onclick="choisir('date', 'Samedi à 20h')">Samedi : 20h</button>
+            <button class="barre" disabled>Jamais.</button>
+        </div>
+    </div>
+
+    <!-- ÉTAPE 3 : Choix de la tenue -->
+    <div id="step-tenue" class="container hidden">
+        <h3>Choisie ma tenue, beau gosse stp.</h3>
+        <div class="options-list">
+            <button onclick="choisir('tenue', 'Costume cravate')">Costume cravate</button>
+            <button onclick="choisir('tenue', 'Jean débardeur, ceinture')">Jean débardeur, ceinture</button>
+            <button onclick="choisir('tenue', 'Street')">Street</button>
+            <button onclick="choisir('tenue', 'Type clochard Jogging')">Type clochard Jogging (pour rire)</button>
+        </div>
+    </div>
+
+    <!-- ÉTAPE 4 : Choix du repas -->
+    <div id="step-repas" class="container hidden">
+        <h3>Choisie le repas ma belle.</h3>
+        <div class="options-list">
+            <button onclick="choisir('repas', 'Sushi')">Sushi 🍣</button>
+            <button onclick="choisir('repas', 'Pizza')">Pizza 🍕</button>
+            <button onclick="choisir('repas', 'Pâtes')">Pâtes 🍝</button>
+            <button onclick="choisir('repas', 'Fruits de mer')">Fruits de mer 🦪</button>
+            <button onclick="choisir('repas', 'Burgers')">Burgers 🍔</button>
+        </div>
+    </div>
+
+    <!-- ÉTAPE 5 : Le Bouquet Final -->
+    <div id="step-bouquet" class="container hidden">
+        <h3>Un petit cadeau pour toi... Cliquez dessus !</h3>
+        <div id="bouquet" onclick="exploserBouquet()">💐</div>
+    </div>
+
+    <!-- ÉTAPE 6 : Le Récapitulatif envoyé par message -->
+    <div id="step-recap" class="container hidden">
+        <h2>Résumé de notre rendez-vous ✨</h2>
+        <div id="recap-texte"></div>
+        <p style="margin-top:20px; font-size:14px; color:#666;">Clique en dessous pour m'envoyer tes choix !</p>
+        <button id="btn-envoyer" onclick="envoyerResultats()">📱 M'envoyer le résumé</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
